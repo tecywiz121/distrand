@@ -2,6 +2,12 @@
 name = "distrand"
 version = "0.1.0"
 authors = ["Sam Wilson <tecywiz121@hotmail.com>"]
+license = "MPL-2.0"
+repository = "https://github.com/tecywiz121/distrand"
+description = "commit-reveal distributed random value generation"
+readme = "README.md"
+keywords = ["random", "rng", "distributed", "distributed-systems"]
+categories = ["algorithms"]
 
 [dependencies]
 bincode = "1.0.1"

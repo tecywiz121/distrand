@@ -9,3 +9,13 @@ participant, so the number of messages increases dramatically as the number
 of participants increases.
 
 See the `examples` directory for a tutorial.
+
+## License
+
+Licensed under the [Mozilla Public License, Version 2.0](LICENSE.md).
+
+### Contribution
+
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in the Covered Software by you, as defined in the Mozilla Public
+License, shall be licensed as above, without any additional terms or conditions.
