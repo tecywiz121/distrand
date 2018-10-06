@@ -1,7 +1,9 @@
 Distrand
 ========
 
-Distrand is a library for ***dist***tributed ***rand***om value generation.
+[![Build Status](https://travis-ci.org/tecywiz121/distrand.svg?branch=master)](https://travis-ci.org/tecywiz121/distrand)
+
+Distrand is a library for disttributed random value generation.
 
 It uses a simple commit-reveal algorithm that is suitable for small numbers
 of participants. Each participant must communicate with every other
