@@ -4,7 +4,7 @@ use crypto_mac::{Mac, MacResult};
 use std::marker::PhantomData;
 
 /// A commitment to a particular `Secret`.
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Commit<T, M>
 where
     M: Mac,
@@ -30,5 +30,32 @@ where
             value_type: PhantomData,
             hash: mac.result().code(),
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    extern crate hmac;
+    extern crate sha2;
+
+    use super::*;
+
+    use bincode;
+
+    use self::hmac::Hmac;
+    use self::sha2::Sha256;
+
+    #[test]
+    fn serialize_deserialize() {
+        struct Banana;
+
+        let commit: Commit<Banana, Hmac<Sha256>> = Commit {
+            value_type: PhantomData,
+            hash: GenericArray::clone_from_slice(&[0; 32]),
+        };
+
+        let bytes = bincode::serialize(&commit).unwrap();
+
+        let _: Commit<Banana, Hmac<Sha256>> = bincode::deserialize(&bytes).unwrap();
     }
 }

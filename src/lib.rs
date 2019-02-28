@@ -17,6 +17,8 @@ extern crate crypto_mac;
 extern crate error_chain;
 pub extern crate rand;
 extern crate serde;
+#[macro_use]
+extern crate serde_derive;
 extern crate typenum;
 
 mod commit;

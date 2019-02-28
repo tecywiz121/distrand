@@ -13,7 +13,7 @@ use serde::Serialize;
 use typenum::Unsigned;
 
 /// An individual participant's contribution to a randomly generated number.
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Secret<T, M>
 where
     M: Mac,
@@ -77,6 +77,8 @@ mod tests {
     use self::hmac::Hmac;
     use self::sha2::Sha512;
 
+    use bincode;
+
     use super::*;
 
     use rand::thread_rng;
@@ -89,5 +91,17 @@ mod tests {
 
         assert_eq!(s.value, 4);
         assert_eq!(s.key.len(), 128);
+    }
+
+    #[test]
+    fn serialize_deserialize() {
+        let secret: Secret<(), Hmac<Sha512>> = Secret {
+            value: (),
+            key: GenericArray::clone_from_slice(&[0; 128]),
+        };
+
+        let bytes = bincode::serialize(&secret).unwrap();
+
+        let _: Secret<(), Hmac<Sha512>> = bincode::deserialize(&bytes).unwrap();
     }
 }
